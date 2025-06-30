@@ -1,0 +1,97 @@
+/* Script by Saeid Alavi Naeini, saeid.alavi@mail.utoronto.ca, 2021 */
+.column {
+  float: left;
+  width: 100%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#dude {
+  float: top;
+  margin: auto;
+  height: 96vh;
+  width: 100%;
+  border: 2px solid black;
+  font-size: 2vw;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#dude-left {
+  float: left;
+  height: 96vh;
+  width: 12%;
+  font-size: 1.5vw;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: royalblue;
+  border: 2px solid black;
+  border-right: none;
+  color: white;
+  text-align: center;
+}
+#dude-top {
+  padding-top: 10%;
+}
+#dude-left-middle {
+  padding-top: 80%;
+}
+#dude-right {
+  float: right;
+  height: 96vh;
+  width: 12%;
+  font-size: 1.5vw;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: royalblue;
+  border: 2px solid black;
+  border-left: none;
+  color: white;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1f1f1;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#regForm {
+  background-color: #ffffff;
+  margin: 0px auto;
+  font-family: Arial, Helvetica, sans-serif;
+  min-width: 300px;
+}
+
+h1 {
+  text-align: center;
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4caf50;
+}
