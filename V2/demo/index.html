@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<!-- Script by Saeid Alavi Naeini, saeid.alavi@mail.utoronto.ca, 2021 -->
+<html>
+<head>
+
+
+        <title>VirtualSLP Demo</title>
+		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./css/main.css" />
+		<link rel="stylesheet" href="./css/plyr.css" />
+		<link rel="stylesheet" href="./css/video-js.css" />
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/RecordRTC.js"></script>
+		<script src="./js/adapter-latest.js"></script>
+		<script src="./js/stopwatch.js"></script>
+		<script src="./js/plyr.js"></script>
+		<script src="./js/video.min.js"></script>
+		<script src="./js/wzrecorder.js"></script>
+		<script src="./js/recorder.js"></script>
+		<script src="./js/DetectRTC.js"></script>
+</head>
+<body>
+
+<form id="regForm" autocomplete="off">
+  <!-- One "tab" for each step in the form: -->
+<div class="tab">
+  	<div class="row">
+	<div id="dude-left">
+	<div id="dude-top">VirtualSLP</br>Demo</div>
+	<div id="dude-left-middle">Welcome
+	</div>
+	</div>
+	<div id="dude-right"><div id="dude-top">Page 1 of 11</div>
+	<div>
+    <div style="padding-left: 25%; padding-top: 300%;">
+      
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    </div>
+	</div>
+	</div>
+	<div id="dude"><center>
+	<h2><center>Welcome to VirtualSLP!</center></h2>
+	</br>
+	<p>Please select your group:</p>
+	<select id="category" name="category" form="regForm">
+	<option value="none"></option>
+		<option value="ALS">ALS</option>
+		<option value="HC">Healthy Controls</option>
+  		<option value="STROKE">Stroke</option>
+	</select>
+	</br></br></br>
+	<p>Please enter your unique ID number:</p>
+    <p><input id="subjectID" placeholder="Subject ID" name="subjectID" maxlength="10" style="text-transform:uppercase"></p>
+	<p id="validGroup">Please Select a Category</p>
+	<p id="validID">Please Enter a Valid ID</p>
+	</center></div></div>
+</div>
+<div class="tab">
+  	<div class="row">
+	<div id="dude-left">
+	<div id="dude-top">VirtualSLP</br>Demo</div>
+	<div id="dude-left-middle">Introduction
+	</div>
+	</div>
+	<div id="dude-right"><div id="dude-top">Page 2 of 11</div>
+	<div>
+    <div style="padding-left: 25%; padding-top: 300%;">
+      
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    </div>
+	</div>
+	</div>
+	<div id="dude">
+	</br></br>
+	<p><center>To hear instructions read out loud to you or to see the video<br><br>demonstration click on <a id="readBtn" disabled style="float:right; right: 18%;">Play<br>instructions<br>out loud</a></center></p>
+	</br></br>
+	<p><center>To advance through tasks, click on  <button type="button" id="nextBtn" disabled style="float:right; right: 15%;">Next</button></center></p>
+	</div></div>
+</div>
+<div class="tab">
+  	<div class="row">
+	<div id="dude-left">
+	<div id="dude-top">VirtualSLP</br>Demo</div>
+	<div id="dude-left-middle">Introduction
+	</div>
+	</div>
+	<div id="dude-right"><div id="dude-top">Page 3 of 11</div>
+	<div>
+    <div style="padding-left: 25%; padding-top: 300%;">
+      
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    </div>
+	</div>
+	</div>
+	<div id="dude">
+	<p><center>Please “allow” permissions for your camera and microphone when asked. See the image below.</center></p>
+	<img src="./images/instructions.jpg" class="center-img">
+	</div></div>
+</div>
+<div class="tab">
+	<div class="row">
+	<div id="dude-left">
+	<div id="dude-top">VirtualSLP</br>Demo</div>
+	<div id="dude-left-middle">Introduction
+	</div>
+	</div>
+	<div id="dude-right"><div id="dude-top">Page 4 of 11</div>
+	<div>
+    <div style="padding-left: 25%; padding-top: 300%;">
+      
+      <button type="button" id="nextBtn4" onclick="nextPrev(1)">Next</button>
+    </div>
+	</div>
+	</div>
+	<div id="dude">
+	<div class="margin_p">
+	<p><h3>To record audio or video, please click <button type="button" class="btn-rec" disabled>Record</button></h3></p>
+	</div>
+	<p><h3>To stop recording, please click <button type="button" class="btn-stop" disabled>Stop</button></h3></p>
+	<div class="clearfix"><img class="img_position" src="./images/Rest_still_image_square.png"><h4>For video recordings, please make sure you are positioned in the middle of the screen. Try it below.</h4>
+	<div id="video-sample"><video id="your-video-sample" autoplay style="height:150px;"></video></div>
+	</br></br>
+	<center><button type="button" id="btn-camera-on"><center>Camera<br>On</center></button></center>
+	</div>
+	</div></div>
+</div>
+<div class="tab">
+  	<div class="row">
+	<div id="dude-left">
+	<div id="dude-top">VirtualSLP</br>Demo</div>
+	<div id="dude-left-middle">Instructions
+	</div>
+	</div>
+	<div id="dude-right"><div id="dude-top">Page 5 of 11</div>
+	<div>
+    <div style="padding-left: 25%; padding-top: 300%;">
+      
+      <button type="button" id="nextBtn5" onclick="nextPrev(1)">Next</button>
+    </div>
+	</div>
+	</div>
+	<div id="dude">
+	<p>Read the paragraph on the next page silently to yourself first. Press Record when ready to read on camera. Read the paragraph out loud at a <b>comfortable speaking rate and loudness.</b> Press Record when ready to read on camera.</p>
+	</br></br>
+	<center>
+	<a id="readBtn" class="task1-button" style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+	<video id="task1-instruction"
+	class="video-js vjs-default-skin vjs-big-play-centered" 
+	preload="auto"
+	data-setup="{}">
+	<source src="./videos/task3.mp4" type="video/mp4">Your browser does not support the video tag.
+	</center>
+	</div></div>
+</div>
+<div class="tab">
+	<div class="row">
+	<div id="dude-left">
+	<div id="dude-top">VirtualSLP</br>Demo</div>
+	<div id="dude-left-middle">Recording
+	</div>
+	</div>
+	<div id="dude-right"><div id="dude-top">Page 6 of 11</div>
+	<div>
+    <div style="padding-left: 25%; padding-top: 300%;">
+      
+      <button type="button" id="nextBtn6" onclick="nextPrev(1)">Next</button>
+    </div>
+	</div>
+	</div>
+	<div id="dude">
+	<p>Bamboo walls are getting to be very popular. They are strong, easy to use, and good looking. They provide a good background and create the mood in Japanese gardens. Bamboo is a grass, and is one of the most rapidly growing grasses in the world. Many varieties of bamboo are grown in Asia, although it is also grown in America. Last year we bought a new home and have been working on the flower gardens. In a few more days, we will be done with the bamboo wall in one of our gardens. We have really enjoyed the project.</p>
+	<div class="appear-video1"></div>
+	</div></div>
+</div>
+<div class="tab">
+  	<div class="row">
+	<div id="dude-left">
+	<div id="dude-top">VirtualSLP</br>Demo</div>
+	<div id="dude-left-middle">Instructions
+	</div>
+	</div>
+	<div id="dude-right"><div id="dude-top">Page 7 of 11</div>
+	<div>
+    <div style="padding-left: 25%; padding-top: 300%;">
+      
+      <button type="button" id="nextBtn7" onclick="nextPrev(1)">Next</button>
+    </div>
+	</div>
+	</div>
+	<div id="dude">
+	<p><h3>Syllable repetitions</h3></p>
+	<p>Take a deep breath and repeat "pa" as fast and as clearly as you can, until you run out of breath.</br></br>View the recorded example below.</p>
+	</br>
+	<center>
+	<a id="readBtn" class="task2-button" style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+	<video id="task2-instruction"
+	class="video-js vjs-default-skin vjs-big-play-centered" 
+	preload="auto"
+	data-setup="{}">
+	<source src="./videos/DDK_pa_new.mp4" type="video/mp4">Your browser does not support the video tag.
+	</center>
+	</div></div>
+</div>
+<div class="tab">
+	<div class="row">
+	<div id="dude-left">
+	<div id="dude-top">VirtualSLP</br>Demo</div>
+	<div id="dude-left-middle">Recording
+	</div>
+	</div>
+	<div id="dude-right"><div id="dude-top">Page 8 of 11</div>
+	<div>
+    <div style="padding-left: 25%; padding-top: 300%;">
+      
+      <button type="button" id="nextBtn8" onclick="nextPrev(1)">Next</button>
+    </div>
+	</div>
+	</div>
+	<div id="dude">
+	<p><center>Say “pa-pa-pa”</center></p>
+	</br>
+	<div class="appear-video2"></div>
+	</div></div>
+</div>
+<div class="tab">
+  	<div class="row">
+	<div id="dude-left">
+	<div id="dude-top">VirtualSLP</br>Demo</div>
+	<div id="dude-left-middle">Instructions
+	</div>
+	</div>
+	<div id="dude-right"><div id="dude-top">Page 9 of 11</div>
+	<div>
+    <div style="padding-left: 25%; padding-top: 300%;">
+      
+      <button type="button" id="nextBtn9" onclick="nextPrev(1)">Next</button>
+    </div>
+	</div>
+	</div>
+	<div id="dude">
+	<p><h3>Syllable repetitions</h3></p>
+	<p>Take a deep breath and repeat "pa" as fast and as clearly as you can, until you run out of breath.</br></br>View the recorded example below.</p>
+	</br>
+	<center>
+	<a id="readBtn" class="task3-button" style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+	<video id="task3-instruction"
+	class="video-js vjs-default-skin vjs-big-play-centered" 
+	preload="auto"
+	data-setup="{}">
+	<source src="./videos/SUSTAINEDAH_new.mp4" type="video/mp4">Your browser does not support the video tag.
+	</center>
+	</div></div>
+</div>
+<div class="tab">
+	<div class="row">
+	<div id="dude-left">
+	<div id="dude-top">VirtualSLP</br>Demo</div>
+	<div id="dude-left-middle">Recording
+	</div>
+	</div>
+	<div id="dude-right"><div id="dude-top">Page 10 of 11</div>
+	<div>
+    <div style="padding-left: 25%; padding-top: 300%;">
+      
+      <button type="button" id="nextBtn10" onclick="nextPrev(1)">Next</button>
+    </div>
+	</div>
+	</div>
+	<div id="dude">
+	<p><center>Please say "a" at your normal pitch and loudness for 5 seconds</center></p>
+	<p><center><b>Audio recording only</b></center></p>
+	<div class="appear-audio1"></div>
+	</div></div>
+</div>
+<div class="tab">
+  	<div class="row">
+	<div id="dude-left">
+	<div id="dude-top">VirtualSLP</br>Demo</div>
+	<div id="dude-left-middle">Finish
+	</div>
+	</div>
+	<div id="dude-right"><div id="dude-top">Page 11 of 11</div>
+	</div>
+	<div id="dude"><span id = "intro"><center>
+	</br></br>
+	<h3><b>Thank you for using the Virtual SLP app!<b>
+	</center></span>
+</div>
+</div>
+</div>
+</div>
+<div class="disappear-video">
+	<center>
+	<video id="your-video" autoplay playsinline></video>
+	<!--
+	<h2 id="time" unselectable="on">00:00:000</h2>
+	-->
+	</br>
+	<div class="center-button">
+		<button type='button' id="webcam">Camera On</button>
+		<button type='button' id="recButton">Record</button>
+		<button type='button' id="videosubmit">Upload</button>
+	</div>
+	<!--
+	<div id="resultResponse"></div>
+	-->
+	</center>
+	<div class="meter"></div>
+</div>
+<div class="disappear-audio" style="display:block;">
+			<center>
+				<div class="container" style="margin:3rem">
+					<p>
+						Start in: <span id="countdown-task1">5 s</span>
+					</p>
+					<p>
+						Duration: <span id="duration1">0 s</span>
+					</p>
+					<p>
+						<audio id="player1"></audio>
+							<button type='button' id="record1">Record</button>
+							<button type='button' id="audiosubmit">Upload</button>
+					</p>
+					<div id="result1"></div>
+				</div>
+			</center>
+			<div id='meter-container'>
+			<div class="meter1"></div>
+			</div>
+</div>
+
+<!-- Circles which indicates the steps of the form: -->
+<div style="text-align:center; display: none;">
+	<span class="step"></span>
+	<span class="step"></span>
+	<span class="step"></span>
+	<span class="step"></span>
+	<span class="step"></span>
+	<span class="step"></span>
+	<span class="step"></span>
+	<span class="step"></span>
+	<span class="step"></span>
+	<span class="step"></span>
+	<span class="step"></span>
+</div>
+</form>
+
+<script src="./js/script.js"></script>
+</body>
+</html>

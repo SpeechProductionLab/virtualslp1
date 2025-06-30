@@ -1,0 +1,496 @@
+/* Script by Saeid Alavi Naeini, saeid.alavi@mail.utoronto.ca, 2021 */
+.column {
+  float: left;
+  width: 100%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.video-js, #intro-video1, #intro-video2, #intro-video3, #intro-video4, #intro-video5, #intro-video6, #intro-video7, #intro-video8, #intro-video9, #intro-video10, #intro-video11, #intro-video12, #intro-video13, #intro-video14, #intro-video15, #intro-video16, #intro-video17, #intro-video18, #intro-video19, #intro-video20 { 
+	width: 100%; 
+	height: 100%;
+}
+.chatBox { margin: 0 auto;height: 450px; border: 2px solid black;padding: 10px;}
+#dude {float: top; margin: 10px auto;height: 80vh;width: 100%; border: 2px solid black;padding: 40px;font-size: 28px;font-family: Arial, Helvetica, sans-serif;}
+#dude-left {float: left; height: 80vh;width: 12%; font-size: 24px;font-family: Arial, Helvetica, sans-serif; background-color: royalblue; border: 2px solid black; border-right: none; color: white; text-align: center;}
+#dude-top {padding-top:10%;}
+#dude-left-middle {padding-top:140%;}
+#dude-right {float: right; height: 80vh;width: 12%; font-size: 24px;font-family: Arial, Helvetica, sans-serif; background-color: royalblue;border: 2px solid black; border-left: none; color: white; text-align: center;}
+#video-sample {float: top; margin: 0px auto;height: 10vh;width: 15%;}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1f1f1;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#regForm {
+  background-color: #ffffff;
+  margin: 0px auto;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 40px;
+  min-width: 300px;
+}
+
+h1 {
+  text-align: center;  
+}
+
+input {
+  padding: 10px;
+  font-size: 17px;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid #aaaaaa;
+}
+
+select {
+  padding: 10px;
+  width: 50%;
+  font-size: 17px;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid #aaaaaa;
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+  overflow: hidden;
+}
+
+button {
+  background-color: yellow;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+
+#nextBtn, #nextBtn4, #nextBtn5, #nextBtn6, #nextBtn7, #nextBtn8, #nextBtn9, #nextBtn10 {
+	height: 50px;
+	width: 80px;
+    padding: 5px 15px;
+    background: yellow;
+    position: relative;
+    float:left;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+	font-size: 20px;
+	border: none;
+	cursor: pointer;
+	font-weight:bold;
+}
+#nextBtn:after, #nextBtn4:after, #nextBtn5:after, #nextBtn6:after, #nextBtn7:after, #nextBtn8:after, #nextBtn9:after, #nextBtn10:after {
+    content: " ";
+    display:block;
+    left: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-left-color: yellow;
+	border-width: 45px;
+	margin-top: -45px;
+    margin-left: -15px;
+	cursor: pointer;
+}
+
+#submitbutton {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#submitbutton:hover {
+  opacity: 0.8;
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;  
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4CAF50;
+}
+
+#work-in-progress {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  font-size: 30px;
+  text-align: center;
+  vertical-align: middle;
+  color: #000000;
+  z-index: 200000;
+  background-color: #FFFFFF;
+}
+
+.work-spinner {
+  background-color: rgba(0,0,0,0);
+  border: 9px solid rgba(27,61,226,0.9);
+  opacity: .9;
+  border-left: 5px solid rgba(0,0,0,0);
+  border-radius: 120px;
+  -webkit-box-shadow: 0 0 35px #1B3DE2;
+  box-shadow: 0 0 35px #1B3DE2;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  -moz-animation: spin .5s infinite linear;
+  -webkit-animation: spin .5s infinite linear;
+  -o-animation: spin .5s infinite linear;
+  animation: spin .5s infinite linear;
+}
+
+
+video {
+    -moz-transform: scale(-1, 1);
+	-webkit-transform: scale(-1, 1); -o-transform: scale(-1, 1);
+	transform: scale(-1, 1); filter: FlipH;
+}
+
+#your-video{
+	width: 100%;
+	height: 25vh;
+}
+
+#your-video-sample {
+	width: 100%;
+	height: 100px;
+}
+
+.disappear-video {
+	width: 30%;
+	margin: auto;
+}
+
+.meter {
+    background: grey;
+    height: 40px;
+    width: 0;
+}
+
+.meter1 {
+    background: grey;
+    height: 40px;
+    width: 0;
+}
+
+.meter.done {
+    background-color: green;
+}
+
+.meter1.done {
+    background-color: green;
+}
+
+.disappear-video, .disappear-audio {
+	display: none;
+}
+
+#meter-container {
+	width: 50%;
+	margin: auto;
+}
+
+.plyr .plyr__controls { display: none }
+
+#category {
+	background-color: #E8E8E8;
+	width: 20%;
+}
+
+#subjectID {
+	background-color: #E8E8E8;
+	width: 20%;
+}
+
+#validID {
+	display: none;
+	color: red;
+}
+
+#validGroup {
+	display: none;
+	color: red;
+}
+
+#readBtn {
+    padding: 5px 25px;
+    background: #808080;
+    position: relative;
+	z-index: 2;
+    float:left;
+    text-align: left;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+	font-size: 17px;
+	border: none;
+}
+#readBtn:after {
+	content: " ";
+    display:block;
+    left: 100%;
+	top: 50%;
+	border: solid transparent;
+	font-size:50px;
+	color:black;
+	position: absolute;
+	z-index: 2;
+	box-sizing: border-box;
+	display:block;
+	width:80px;
+	height:80px;
+	padding-top: -4px;
+	padding-left: 8px;
+	line-height: 65px;
+	border: 6px solid black;
+	border-radius: 50%;
+	margin: auto;
+	text-align:center;
+	content: "\25BA";
+	text-decoration:none;
+	background-color: yellow;
+	font-weight:bold;
+	transition: all 0.3s ease;
+	border-width: 5px;
+	margin-top: -40px;
+    margin-left: -20px;
+	cursor: pointer;
+}
+
+#readBtn:after::hover {
+	background-color: rgba(0,0,0,0.8);
+	box-shadow: 0px 0px 10px rgba(255,255,100,1);
+	text-shadow: 0px 0px 10px rgba(255,255,100,1);
+}
+
+#pauseBtn {
+    padding: 5px 25px;
+    background: #808080;
+    position: relative;
+    float:left;
+    text-align: left;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+	font-size: 17px;
+	border: none;
+}
+#pauseBtn:after {
+	content: " ";
+    display:block;
+    left: 100%;
+	top: 50%;
+	border: solid transparent;
+	font-size:30px;
+	color:black;
+	position: absolute;
+	box-sizing: border-box;
+	display:block;
+	width:80px;
+	height:80px;
+	padding-top: -4px;
+	padding-left: 8px;
+	line-height: 65px;
+	border: 6px solid #fff;
+	border-radius: 50%;
+	margin: auto;
+	text-align:center;
+	content: "\258C\258C";
+	text-decoration:none;
+	background-color: yellow;
+	transition: all 0.3s ease;
+	border-width: 5px;
+	margin-top: -40px;
+    margin-left: -20px;
+	cursor: pointer;
+}
+
+#pauseBtn:after::hover {
+	background-color: rgba(0,0,0,0.8);
+	box-shadow: 0px 0px 10px rgba(255,255,100,1);
+	text-shadow: 0px 0px 10px rgba(255,255,100,1);
+}
+
+#recButton {
+	padding-left: 4px;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	border: 3px solid black;
+	margin: auto;
+	outline: none;
+}
+
+#record1 {
+	padding-left: 8px;
+	width: 80px;
+	height: 80px;
+	font-size: 15;
+	text-align:center;
+	font-weight:bold;
+	border-radius: 50%;
+	border: 3px solid black;
+	margin: auto;
+	outline: none;
+}
+
+.btn-record1, .btn-rec, .btn-record1-audio, .btn-video-rec{
+	padding-left: 4px;
+	width: 75px;
+	height: 75px;
+	border-radius: 50%;
+	border: 3px solid black;
+	margin: auto;
+	outline: none;
+	font-size: 15;
+	text-align:center;
+	font-weight:bold;
+	content: "RECORD";
+	background-color: red;
+	color: white;
+}
+
+.btn-record, .btn-stop, .btn-record-audio, .btn-video-stop{
+	padding-left: 15px;
+	width: 75px;
+	height: 75px;
+	border-radius: 50%;
+	border: 3px solid black;
+	margin: auto;
+	outline: none;
+	font-size: 15;
+	color: black;
+	text-align:center;
+	font-weight:bold;
+	content: "STOP";
+	background-color: orange;
+	animation-name: pulse;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+#btn-camera-on, #webcam{
+	padding-left: 4px;
+	padding-bottom: 5px;
+	width: 75px;
+	height: 75px;
+	border-radius: 50%;
+	border: 3px solid black;
+	margin: auto;
+	outline: none;
+	font-size: 15;
+	color: white;
+	text-align:center;
+	font-weight:bold;
+	content: "Camera On";
+	background-color: darkblue;
+
+}
+
+@keyframes pulse{
+	0%{
+		box-shadow: 0px 0px 5px 0px rgba(173,0,0,.3);
+	}
+	65%{
+		box-shadow: 0px 0px 5px 13px rgba(173,0,0,.3);
+	}
+	90%{
+		box-shadow: 0px 0px 5px 13px rgba(173,0,0,0);
+	}
+}
+
+.center-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.center-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.img_position {
+	float: right;
+	width: 150px;
+	height:150px;
+	margin-right: 5%;
+}
+
+.margin_p {
+	padding-left: 2%;
+}
+
+#task1-instruction, #task2-instruction, #task3-instruction  {
+	float:top;
+	width: 30%;
+	height: 30vh;
+	position: relative;
+	z-index: 1;
+	-webkit-transition: all 1s;
+	-moz-transition: all 1s;
+	-o-transition: all 1s;
+	transition: all 1s;
+}
+}
+
+#appear-video1 {
+	width: 10%;
+	height: 50vh;
+	margin: auto;
+}
