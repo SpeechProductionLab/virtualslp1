@@ -1,0 +1,2170 @@
+<!DOCTYPE html>
+<!-- Script by Saeid Alavi Naeini, saeid.alavi@mail.utoronto.ca, 2021 -->
+<html>
+
+<head>
+
+
+	<title>VirtualSLP</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="./demo/css/main_app.css" />
+	<link rel="stylesheet" href="./demo/css/plyr.css" />
+	<link rel="stylesheet" href="./demo/css/video-js.css" />
+	<script src="./demo/js/jquery.min.js"></script>
+	<script src="./demo/js/RecordRTC.js"></script>
+	<script src="./demo/js/adapter-latest.js"></script>
+	<script src="./demo/js/stopwatch.js"></script>
+	<script src="./demo/js/plyr.js"></script>
+	<script src="./demo/js/video.min.js"></script>
+	<script src="./demo/js/wzrecorder.js"></script>
+	<!--<script src="./js/recorder.js"></script>-->
+	<script src="./demo/js/DetectRTC.js"></script>
+</head>
+
+<body>
+
+	<form id="regForm" autocomplete="off">
+		<!-- One "tab" for each step in the form: -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle">Welcome
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 1 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<center>
+						<h2>
+							<center>Welcome to VirtualSLP!</center>
+						</h2>
+						</br>
+						<p>Please select your group:</p>
+						<select id="category" name="category" form="regForm">
+							<option value="none"></option>
+							<option value="ALS">ALS</option>
+							<option value="HC">Healthy Controls</option>
+							<option value="STROKE">Stroke</option>
+						</select>
+						</br></br></br>
+						<p>Please enter your unique ID number:</p>
+						<p><input id="subjectID" placeholder="Subject ID" name="subjectID" maxlength="10"
+								style="text-transform:uppercase"></p>
+						<p id="validGroup">Please Select a Category</p>
+						<p id="validID">Please Enter a Valid ID</p>
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle">Introduction
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 2 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					</br></br>
+					<p>
+						<center>To hear instructions read out loud to you or to see the video<br><br>demonstration click
+							on <a id="readBtn" disabled style="float:right; right: 18%;">Play<br>instructions<br>out
+								loud</a></center>
+					</p>
+					</br></br>
+					<p>
+						<center>To advance through tasks, <br><br> look to the bottom right and click on <button
+								type="button" id="nextBtn" disabled style="float:right; right: 15%;">Next</button>
+						</center>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle">Introduction
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 3 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Please “allow” permissions for your camera and microphone when asked. See the image
+							below.</center>
+					</p>
+					<img src="./demo/images/instructions.JPG" class="center-img">
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div id="dude-left">
+				<div id="dude-top">VirtualSLP</div>
+				<div id="dude-left-middle">Introduction
+				</div>
+			</div>
+			<div id="dude-right">
+				<div id="dude-top">Page 4 of 68</div>
+				<div>
+					<div class="button-container">
+						<button type="button" id="nextBtn4" onclick="nextPrev(1)">Next</button>
+					</div>
+				</div>
+			</div>
+			<div id="dude">
+				<div class="margin_p">
+					<p>To record audio or video, please click <button type="button" class="btn-rec"
+							disabled>Record</button></p>
+					<p>To stop recording, please click <button type="button" class="btn-stop" disabled>Stop</button></p>
+					<img class="img_position" src="./demo/images/posing.png">For video recordings, please make sure you are
+					positioned in the middle of the screen. Try it below.
+				</div>
+				<center>
+					<div id="video-sample"><video id="your-video-sample" autoplay></video></div>
+					<div class="center-button1">
+						<button type="button" id="btn-camera-on">Camera<br>On</button>
+					</div>
+				</center>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 1</strong> <br><br> Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 5 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn5" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p><strong>Rest</strong></p>
+						<p>Look straight at the camera, with your face in a neutral position for 10 seconds. Your teeth should be together but not
+						clenching.</br></br>Please do this as is shown in the photo below.</p>
+					</br>
+					<img class="img_position_task1" src="./demo/images/Rest_still_image.png">
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 1</strong> <br><br> Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 6 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn6" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<center>
+							<p>Look straight ahead</p>
+						</center>
+					</br></br>
+					</div>
+					<div class="appear-video1"></div>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 2</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 7 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn7" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Big smile</h3>
+						</p>
+						<p>Show me a big smile 3 times.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					</br>
+					<center>
+						<a id="readBtn1" onclick="instruction1Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task1-instruction" class="video-js vjs-default-skin vjs-big-play-centered"
+							preload="auto" data-setup="{}">
+							<source src="./demo/videos/NEWSMILE.mp4" type="video/mp4">Your browser does not support the
+							video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 2</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 8 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn8" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Please smile 3 times</center>
+					</p>
+					</br>
+					<div class="appear-video2"></div>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 3</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 9 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn9" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Pucker your lips</h3>
+						</p>
+						<p>Pucker your lips 3 times.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn2" onclick="instruction2Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task2-instruction" class="video-js vjs-default-skin vjs-big-play-centered"
+							preload="auto" data-setup="{}">
+							<source src="./demo/videos/NEWPUCKER.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 3</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 10 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn10" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Pucker your lips 3 times</center>
+					</p>
+					</br>
+					<div class="appear-video3"></div>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 4</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 11 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn11" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Alternate smile and pucker</h3>
+						</p>
+						<p>Alternate between a big smile and puckering your lips as fast as possible for 5 seconds.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn3" onclick="instruction3Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task3-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/ALTERNATING.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 4</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 12 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn12" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Smile and then pucker</center>
+					</p>
+					</br>
+					<div class="appear-video4"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 5</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 13 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn13" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Puff your cheeks</h3>
+						</p>
+						<p>In your package, we provided you with a nose clip. Please put the nose clip on your nose as shown. After, puff out your
+						cheeks with your mouth firmly closed and hold it for 5 seconds. You can take off the nose clips afterwards.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn4" onclick="instruction4Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task4-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/noseclip2.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 5</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 14 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn14" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Puff your cheeks</center>
+					</p>
+					</br>
+					<div class="appear-video5"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 6 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 6</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 15 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn15" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Press tongue against the cheeks</h3>
+						</p>
+						<p>Press your tongue against the inside your left cheek for 5 seconds, then go back to normal. Press your tongue against
+						the inside your right cheek for 5 seconds, then go back to normal. Do this for 3 times.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn5" onclick="instruction5Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task5-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/TONGUEcheek_new.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 6</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 16 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn16" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Press your tongue against your cheeks</center>
+					</p>
+					</br>
+					<div class="appear-video6"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 7 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 7</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 17 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn17" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Relax tongue</h3>
+						</p>
+						<p>Move your face close to the camera. Open your mouth and relax your tongue for 10 seconds.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn6" onclick="instruction6Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task6-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/TONGUECLOSE.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 7</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 18 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn18" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Move close, open your mouth, and relax your tongue</center>
+					</p>
+					</br>
+					<div class="appear-video7"></div>
+				</div>
+			</div>
+		</div>
+		<!-- readjust -->
+		<div class="tab">
+			<div id="dude-left">
+				<div id="dude-top">VirtualSLP</div>
+				<div id="dude-left-middle">Readjust
+				</div>
+			</div>
+			<div id="dude-right">
+				<div id="dude-top">Page 19 of 68</div>
+				<div>
+					<div class="button-container">
+						<button type="button" id="nextBtn19" onclick="nextPrev(1)">Next</button>
+					</div>
+				</div>
+			</div>
+			<div id="dude">
+				<center>
+					<p>Please readjust your distance and height before continuing</p>
+				</center>
+				<div class='center-img'>
+					<img class="img_position" src="./demo/images/posing.png">
+				</div>
+				<br>
+				<br>
+				<br>
+				<br>
+					<div id="video-sample1"><video id="your-video-sample1" autoplay></video></div>
+					<div class="center-button2">
+						<button type="button" id="btn-camera-on1">Camera<br>On</button>
+					</div>
+			</div>
+		</div>
+		<!-- Task 8 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 8</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 20 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn20" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Tongue protrusion</h3>
+						</p>
+						<p>Turn your head towards your right shoulder. Stick your tongue straight out, as far as possible. Do this 3 times.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn7" onclick="instruction7Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task7-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/TONGUEOUT.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 8</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 21 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn21" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Turn your head and stick your tongue out</center>
+					</p>
+					</br>
+					<div class="appear-video8"></div>
+				</div>
+			</div>
+		</div>
+		<!-- readjust -->
+		<div class="tab">
+			<div id="dude-left">
+				<div id="dude-top">VirtualSLP</div>
+				<div id="dude-left-middle">Readjust
+				</div>
+			</div>
+			<div id="dude-right">
+				<div id="dude-top">Page 22 of 68</div>
+				<div>
+					<div class="button-container">
+						<button type="button" id="nextBtn22" onclick="nextPrev(1)">Next</button>
+					</div>
+				</div>
+			</div>
+			<div id="dude">
+				<center>
+					<p>Please readjust your distance and height before continuing</p>
+				</center>
+				<div class='center-img'>
+					<img class="img_position" src="./demo/images/posing.png">
+				</div>
+				<br>
+				<br>
+				<br>
+				<br>
+					<div id="video-sample2"><video id="your-video-sample2" autoplay></video></div>
+					<div class="center-button3">
+						<button type="button" id="btn-camera-on2">Camera<br>On</button>
+					</div>
+			</div>
+		</div>
+		<!-- Task 9 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 9</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 23 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn23" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Tongue lateral movement</h3>
+						</p>
+						<p>Stick out your tongue and move it far as your can to the right. (pause) Move it as far as you can to the left. Do this 3
+						times.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn8" onclick="instruction8Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task8-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/TONGUESIDE.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 9</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 24 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn24" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Stick your tongue out and move it side to side</center>
+					</p>
+					</br>
+					<div class="appear-video9"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 10 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 10</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 25 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn25" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Tongue to nose</h3>
+						</p>
+						<p>Point the tip of your tongue up towards your nose and down towards your chin 3 times.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn9" onclick="instruction9Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task9-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/TONGUEUPDOWN.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 10</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 26 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn26" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Point your tongue towards your nose and your chin</center>
+					</p>
+					</br>
+					<div class="appear-video10"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 11 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 11</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 27 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn27" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Tongue lateral movement (fast)</h3>
+						</p>
+						<p>Stick out your tongue and move it from side-to-side, touching the corners of your mouth, as fast as you can for 5
+						seconds.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn10" onclick="instruction10Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task10-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/TONGUE_LR_fast.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 11</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 28 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn28" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Stick your tongue out and quickly move it side to side</center>
+					</p>
+					</br>
+					<div class="appear-video11"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 12 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 12</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 29 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn29" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Puff with tongue out</h3>
+						</p>
+						<p>Stick your tongue out with your lips firmly closed around it. Puff out your cheeks and hold it for 5 seconds. Do this
+						for 3 times.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn11" onclick="instruction11Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task11-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/TONGUEPUFF.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 12</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 30 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn30" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Stick your tongue out while puffing your cheeks</center>
+					</p>
+					</br>
+					<div class="appear-video12"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 13 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 13</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 31 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn31" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Say “a” while pinching/unpinching</h3>
+						</p>
+						<p>Say "a" for about 5 seconds, while alternating between pinching and un-pinching your nose.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn12" onclick="instruction12Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task12-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/PINCHING_new.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 13</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 32 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn32" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Say “a” while pinching/unpinching your nose</center>
+					</p>
+					</br>
+					<div class="appear-video13"></div>
+				</div>
+			</div>
+		</div>
+		<!-- readjust -->
+		<div class="tab">
+			<div id="dude-left">
+				<div id="dude-top">VirtualSLP</div>
+				<div id="dude-left-middle">Readjust
+				</div>
+			</div>
+			<div id="dude-right">
+				<div id="dude-top">Page 33 of 68</div>
+				<div>
+					<div class="button-container">
+						<button type="button" id="nextBtn33" onclick="nextPrev(1)">Next</button>
+					</div>
+				</div>
+			</div>
+			<div id="dude">
+				<center>
+					<p>Please readjust your distance and height before continuing</p>
+				</center>
+				<div class='center-img'>
+					<img class="img_position" src="./demo/images/posing.png">
+				</div>
+				<br>
+				<br>
+				<br>
+				<br>
+					<div id="video-sample3"><video id="your-video-sample3" autoplay></video></div>
+					<div class="center-button4">
+						<button type="button" id="btn-camera-on3">Camera<br>On</button>
+					</div>
+			</div>
+		</div>
+		<!-- Task 14 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 14</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 34 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn34" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>We see three geese</h3>
+						</p>
+						<p>Repeat “We see three geese.” 3 times at your comfortable speaking rate and volume.</p>
+					</div>
+					<center>
+						<audio id="task13-instruction" src="./demo/videos/ThreeGeese.wav"></audio>
+						<a class="task13-button" id="readBtn13" onclick="instruction13Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 14</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 35 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn35" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Say “we see three geese” 3 times</center>
+					</p>
+					</br></br>
+					<p>
+						<center><b>Audio recording only</b></center>
+					</p>
+					</br>
+					<div class="appear-audio1"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 15 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 15</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 36 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn36" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Jaw opening</h3>
+						</p>
+						<p>Open your mouth as wide as is comfortable, without hurting yourself, then go back to normal. Do this 3 times.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn14" onclick="instruction14Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task14-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/OpenWide.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 15</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 37 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn37" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Open your jaw 3 times</center>
+					</p>
+					</br>
+					<div class="appear-video14"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 16 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 16</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 38 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn38" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Jaw opening (fast)</h3>
+						</p>
+						<p>Open and close your mouth as wide and as fast as you can, without hurting yourself. Do this for 5 seconds.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn15" onclick="instruction15Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task15-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/JAW_Fast.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 16</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 39 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn39" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Open your jaw 3 times quickly</center>
+					</p>
+					</br>
+					<div class="appear-video15"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 17 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 17</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 40 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn40" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Say “a”</h3>
+						</p>
+						<p>Take a breath and then say "a" at your normal pitch and loudness for 5 seconds. Do this 3 times.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn16" onclick="instruction16Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task16-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/SUSTAINEDAH_new.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 17</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 41 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn41" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Say “a” 3 times, for 5 seconds each</center>
+					</p>
+					</br></br>
+					<p>
+						<center><b>Audio recording only</b></center>
+					</p>
+					</br>
+					<div class="appear-audio2"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 18 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 18</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 42 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn42" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Sentence reading</h3>
+						</p>
+						<p>Read the list of six sentences at your normal speaking rate and loudness.</p>
+					</div>
+					<center>
+						<audio id="task17-instruction" src="./demo/videos/CAPEv.wav"></audio>
+						<a class="task17-button" id="readBtn17" onclick="instruction17Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 18</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 43 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn43" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Please read the sentences</center>
+					</p>
+					</br></br>
+					<p>
+						<center><b>Audio recording only</b></center>
+					</p>
+					</br>
+					<div class="appear-audio3"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 19 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 19</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 44 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn44" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Elevate your pitch</h3>
+						</p>
+						<p>Say /a/ starting at your normal pitch, then glide your pitch up high and hold it as high as you can for a few seconds.
+						Do this 2 times.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn18" onclick="instruction18Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task18-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/GLIDE.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 19</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 45 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn45" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Please say “a” while gliding pitch up and down</center>
+					</p>
+					</br></br>
+					<p>
+						<center><b>Audio recording only</b></center>
+					</p>
+					</br>
+					<div class="appear-audio4"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 20 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 20</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 46 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn46" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Bamboo passage</h3>
+						</p>
+						<p>Read the text silently to yourself first, then read it out loud at a comfortable speaking rate and loudness.</p>
+					</div>
+					<center>
+						<audio id="task19-instruction" src="./demo/videos/Bamboo_withexample.wav"></audio>
+						<a class="task19-button" id="readBtn19" onclick="instruction19Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 20</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 47 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn47" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Please read the passage</center>
+					</p>
+					</br></br>
+					<p>
+						<center><b>Audio recording only</b></center>
+					</p>
+					</br>
+					<div class="appear-audio5"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 21 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 21</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 48 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn48" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Syllable repetitions</h3>
+						</p>
+						<p>Take a deep breath and repeat "pa" as fast and as clearly as you can, until you run out of breath.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn20" onclick="instruction20Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task20-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/DDK_pa_new.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 21</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 49 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn49" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Say “pa-pa-pa”</center>
+					</p>
+					</br>
+					<div class="appear-video16"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 22 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 22</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 50 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn50" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Syllable repetitions</h3>
+						</p>
+						<p>Take a deep breath and repeat “ta" as fast and as clearly as you can, until you run out of breath.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn21" onclick="instruction21Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task21-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/DDK_ta.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 22</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 51 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn51" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Say “ta-ta-ta”</center>
+					</p>
+					</br>
+					<div class="appear-video17"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 23 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 23</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 52 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn52" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Syllable repetitions</h3>
+						</p>
+						<p>Take a deep breath and repeat “ka" as fast and as clearly as you can, until you run out of breath.
+						</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn22" onclick="instruction22Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task22-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/DDK_ka.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 23</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 53 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn53" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Say “ka-ka-ka”</center>
+					</p>
+					</br>
+					<div class="appear-video18"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 24 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 24</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 54 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn54" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Syllable repetitions</h3>
+						</p>
+						<p>Take a deep breath and repeat “pataka" as fast and as clearly as you can, until you run out of breath.
+						</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn23" onclick="instruction23Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task23-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/DDK_pataka.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 24</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 55 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn55" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Say “pataka-pataka-pataka”</center>
+					</p>
+					</br>
+					<div class="appear-video19"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 25 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 25</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 56 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn56" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Voluntary cough</h3>
+						</p>
+						<p>Cough hard as if you have something stuck in your throat. Do this for 2 times. Do not cover your mouth.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn24" onclick="instruction24Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task24-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/COUGH.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 25</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 57 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn57" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Please cough hard 2 times</center>
+					</p>
+					</br></br>
+					<p>
+						<center><b>Audio recording only</b></center>
+					</p>
+					</br>
+					<div class="appear-audio6"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 26 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 26</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 58 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn58" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Swallowing water</h3>
+						</p>
+						<p>Please fill the cup you were provided in your package with water. It must be full. Drink the cup of water completely and
+						without stopping. After you're done swallowing, say "a" for 2-3 seconds. Ensure to tilt the cup, not your head.
+						<br>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn25" onclick="instruction25Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task25-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/Water.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 26</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 59 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn59" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Please drink the water and then say “a”</center>
+					</p>
+					</br>
+					<div class="appear-video20"></div>
+				</div>
+			</div>
+		</div>
+		<!-- readjust -->
+		<div class="tab">
+			<div id="dude-left">
+				<div id="dude-top">VirtualSLP</div>
+				<div id="dude-left-middle">Readjust
+				</div>
+			</div>
+			<div id="dude-right">
+				<div id="dude-top">Page 60 of 68</div>
+				<div>
+					<div class="button-container">
+						<button type="button" id="nextBtn60" onclick="nextPrev(1)">Next</button>
+					</div>
+				</div>
+			</div>
+			<div id="dude">
+				<center>
+					<p>Please readjust your distance and height before continuing</p>
+				</center>
+				<div class='center-img'>
+					<img class="img_position" src="./demo/images/posing.png">
+				</div>
+				<br>
+				<br>
+				<br>
+				<br>
+					<div id="video-sample4"><video id="your-video-sample4" autoplay></video></div>
+					<div class="center-button5">
+						<button type="button" id="btn-camera-on4">Camera<br>On</button>
+					</div>
+			</div>
+		</div>
+		<!-- Task 27 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 27</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 61 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn61" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Eating a cracker</h3>
+						</p>
+						<p>Eat the cracker, as quickly as is comfortably and safely possible. When you are finished chewing and swallowing the
+						cracker in its entirety, say "I'm done".</p>
+					</div>
+					<center>
+						<audio id="task26-instruction" src="./demo/videos/CRACKER.wav"></audio>
+						<a class="task26-button" id="readBtn26" onclick="instruction26Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 27</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 62 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn62" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Please eat the cracker</center>
+					</p>
+					</br>
+					<div class="appear-video21"></div>
+				</div>
+			</div>
+		</div>
+		<!-- readjust -->
+		<div class="tab">
+			<div id="dude-left">
+				<div id="dude-top">VirtualSLP</div>
+				<div id="dude-left-middle">Readjust
+				</div>
+			</div>
+			<div id="dude-right">
+				<div id="dude-top">Page 63 of 68</div>
+				<div>
+					<div class="button-container">
+						<button type="button" id="nextBtn63" onclick="nextPrev(1)">Next</button>
+					</div>
+				</div>
+			</div>
+			<div id="dude">
+				<center>
+					<p>Please readjust your distance and height before continuing</p>
+				</center>
+				<div class='center-img'>
+					<img class="img_position" src="./demo/images/posing.png">
+				</div>
+				<br>
+				<br>
+				<br>
+				<br>
+					<div id="video-sample5"><video id="your-video-sample5" autoplay></video></div>
+					<div class="center-button6">
+						<button type="button" id="btn-camera-on5">Camera<br>On</button>
+					</div>
+			</div>
+		</div>
+		<!-- Task 28 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 28</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 64 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn64" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>Sentence intelligibility</h3>
+						</p>
+						<p>Locate the paper sheet called S.I.T. For each sentence, first say the number, and then the sentence. Read the sentences
+						at your normal speaking rate and loudness.</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn27" onclick="instruction27Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task27-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/SIT_b_neww.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 28</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 65 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn65" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Please read the sentences</center>
+					</p>
+					</br></br>
+					<p>
+						<center><b>Audio recording only</b></center>
+					</p>
+					</br>
+					<div class="appear-audio7"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Task 29 begins -->
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 29</strong> <br><br>Instructions
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 66 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn66" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<div class="margin_p">
+						<p>
+						<h3>“Buy Bobby a puppy”</h3>
+						</p>
+						<p>Repeat the sentence “buy Bobby a puppy" 10 times at your comfortable speaking rate and volume.
+						</p>
+						<p>View the recorded example below.</p>
+					</div>
+					<center>
+						<a id="readBtn28" onclick="instruction28Play()"
+							style="margin-left: 32%; margin-top: 7%;">Play<br>instructions<br>out loud</a>
+						<video id="task28-instruction" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto"
+							data-setup="{}">
+							<source src="./demo/videos/NEWBBP.mp4" type="video/mp4">Your browser does not support
+							the video tag.
+					</center>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle"><strong>Task 29</strong> <br><br>Recording
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 67 of 68</div>
+					<div>
+						<div class="button-container">
+							<button type="button" id="nextBtn67" onclick="nextPrev(1)">Next</button>
+						</div>
+					</div>
+				</div>
+				<div id="dude">
+					<p>
+						<center>Say “buy Bobby a puppy” 10 times</center>
+					</p>
+					</br>
+					<div class="appear-video22"></div>
+				</div>
+			</div>
+		</div>
+		<div class="tab">
+			<div class="row">
+				<div id="dude-left">
+					<div id="dude-top">VirtualSLP</div>
+					<div id="dude-left-middle">Finish
+					</div>
+				</div>
+				<div id="dude-right">
+					<div id="dude-top">Page 68 of 68</div>
+				</div>
+				<div id="dude"><span id="intro">
+						<center>
+							</br></br></br></br>
+							<h3><b>Thank you for using the Virtual SLP app!<b>
+						</center>
+					</span>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="disappear-video">
+			<center>
+				<h2 id="time" unselectable="on">00:00:000</h2>
+				<video id="your-video" autoplay playsinline></video>
+				</br>
+				<div class="center-button">
+					<button type='button' id="webcam">Camera On</button>
+					<button type='button' id="recButton">Record</button>
+					<div class="meter">Upload <br> Progress: <br> 0%</div>
+				</div>
+				<!--
+	<div id="resultResponse"></div>
+	-->
+			</center>
+		</div>
+		<div class="disappear-audio">
+			<center>
+				<p>
+					Start in: <span id="countdown-task1">5 s</span>
+				</p>
+				<p>
+					Duration: <span id="duration1">0 s</span>
+				</p>
+				<audio id="player1"></audio>
+				<div class="center-button-audio">
+					<button type='button' id="record1">Record</button>
+					<div class="meter1">Upload <br> Progress: <br> 0%</div>
+				</div>
+				<div id="result1"></div>
+			</center>
+		</div>
+
+		<!-- Circles which indicates the steps of the form: -->
+		<div style="text-align:center; display: none;">
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+			<span class="step"></span>
+		</div>
+	</form>
+
+	<script src="./demo/js/script_app.js"></script>
+</body>
+
+</html>
