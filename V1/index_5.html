@@ -1,0 +1,244 @@
+<html>
+<head>
+	<link rel="stylesheet" href="plyr.css" />
+	<script src="RecordRTC.js"></script>
+	<script src="adapter-latest.js"></script>
+	<script src="jquery.min.js"></script>
+	<script src="stopwatch.js"></script>
+	<script src="plyr.js"></script>
+	<!-- Video.js base CSS -->
+<!-- City -->
+<style>
+video {
+    -moz-transform: scale(-1, 1);
+	-webkit-transform: scale(-1, 1); -o-transform: scale(-1, 1);
+	transform: scale(-1, 1); filter: FlipH;
+}
+
+#your-video {
+	width: 100%;
+	height: 450px;
+}
+
+:root {
+	width: 50%;
+	height: 450px;
+	margin: auto;
+}
+
+.meter {
+    background: grey;
+    height: 40px;
+    width: 0;
+}
+
+.meter.done {
+    background-color: green;
+}
+</style>
+</head>
+<body>
+<center>
+<button id="btn-record">Record</button>
+<button id="btn-record1">Stop</button>
+<hr>
+<video id="your-video" autoplay playsinline controls></video>
+<h2 id="time" unselectable="on">00:00:000</h2>
+</br>
+<div>
+<button type="button" id="videosubmit">UPLOAD</button>
+</div>
+<!--
+<div id="resultResponse"></div>
+-->
+</center>
+<div class="meter"></div>
+<script>
+
+//var dbx = new Dropbox({ accessToken: "sl.AqKQtfMtTOYOqUyh2HMErO21_9xfnRZbfUV3kk_rrj3Q26TKbRIigWOxSbslEij-SbN1_80mL8JvuP7n2Jgd4cnBEiHjQdGHTF0zmWcucef8cIrEEtrcyJJJGD-qJlwQ0SSOKueo3Ro" });
+//numerous stack overflow examples on creating a blob from data uri
+//the path here is the path of the file as it will exist on dropbox.
+//should be unique or you will get a 4xx error
+var subjectID = Math.floor((Math.random() * 10000) + 1).toString();
+const players = new Plyr('#your-video', {
+	
+});
+//time.stopwatch = new Stopwatch(document.getElementById('time'));
+//players.toggleControls(toggle);
+var recorder;
+var yourVideo = document.getElementById('your-video');
+var recordButton = document.getElementById('btn-record');
+var submitButton = document.getElementById('videosubmit');
+var stopButton = document.getElementById('btn-record1');
+var bloby;
+stopButton.disabled = true;
+stopButton.style.opacity = 0.3;
+recordButton.onclick = function() {
+    recordButton.disabled = true;
+    recordButton.style.opacity = 0.3;
+	stopButton.disabled = false;
+    stopButton.style.opacity = 1;
+	show();
+	reset();
+
+    var cameraProperties = {
+        video: {
+            width: 1920,
+            height: 1080
+        },
+        audio: true
+    };
+
+    navigator.mediaDevices.getUserMedia(cameraProperties).then(function(cameraStream) {
+            yourVideo.volume = 0;
+            yourVideo.srcObject = cameraStream;
+			start();
+
+            recorder = RecordRTC(cameraStream, {
+                videoBitsPerSecond: 51200000,
+				audioBitsPerSecond: 320000,
+                mimeType: 'video/mp4'
+            });
+            recorder.startRecording();
+			stp = cameraStream;
+			setTimeout(function() {
+                recorder.stopRecording(function() {
+					stopButton.disabled = true;
+					stopButton.style.opacity = 0.3;
+					recordButton.disabled = false;
+					recordButton.style.opacity = 1;
+                    var blob = recorder.getBlob();
+					cameraStream.stop();
+					stop();
+					update();
+                    //alert('Recording size: ' + bytesToSize(blob.size));
+
+                    var videoURL = URL.createObjectURL(blob);
+					
+					//console.log(bloby);
+					//source = videoURL;
+                    yourVideo.srcObject = null;
+                    yourVideo.volume = 1;
+                    yourVideo.src = videoURL;
+					bloby = blob;
+                });
+            }, 10000);
+	});
+}
+stopButton.onclick = function() {
+		stopButton.disabled = true;
+		stopButton.style.opacity = 0.3;
+		recordButton.disabled = false;
+		recordButton.style.opacity = 1;
+		recorder.stopRecording(function() {
+			var blob = recorder.getBlob();
+			stp.stop();
+			stop();
+			update();
+			//alert('Recording size: ' + bytesToSize(blob.size));
+
+			var videoURL = URL.createObjectURL(blob);
+			//console.log(bloby);
+			yourVideo.srcObject = null;
+			yourVideo.volume = 1;
+			yourVideo.src = videoURL;
+			bloby = blob;
+		});
+}
+/*
+submitButton.addEventListener("click", function () {
+          if (bloby) {
+			//ajaxpost(bloby);
+			dbx.filesUpload({path: 'bloby_filename.mp4', contents: bloby});
+			//bloby=0;
+          }
+});
+
+function ajaxpost(bloby){
+  // (A) GET FORM DATA
+  var filename = subjectID + "_" + "task1";
+  var formDatadata = new FormData();
+  formDatadata.append("name", filename);
+  formDatadata.append('video', bloby);
+ 
+  // (B) AJAX
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", './upload-video-v2.php', true);
+  //xhr.timeout = 20000; // time in milliseconds
+  // What to do when server responds
+  //var resultResponse = "result" + (currentTab).toString();
+  xhr.onload = function(){ document.getElementById("resultResponse").innerHTML = this.response; };
+  xhr.send(formDatadata);
+  //var buttonResponse = "videosubmit" + (currentTab).toString();
+  document.getElementById("videosubmit").disabled = true; 
+  document.getElementById("videosubmit").style.opacity = 0.3;
+  // (C) PREVENT HTML FORM SUBMIT
+  return false;
+}
+
+function ajaxpost1(bloby){
+  // (A) GET FORM DATA
+  var filename = subjectID + "_" + "task1";
+  //xhr.setRequestHeader("name", filename);
+  //xhr.setRequestHeader("video", bloby);
+  // (B) AJAX
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", './upload-video-v2.php', true);
+  //xhr.timeout = 20000; // time in milliseconds
+  // What to do when server responds
+  //var resultResponse = "result" + (currentTab).toString();
+  xhr.onload = function(){ document.getElementById("resultResponse").innerHTML = this.response; };
+  xhr.upload.addEventListener("progress", function (event) {
+
+    var percent = (event.loaded / event.total) * 100;
+    //**percent** variable can be used for modifying the length of your progress bar.
+    console.log(percent);
+	});
+  xhr.send(bloby);
+  //var buttonResponse = "videosubmit" + (currentTab).toString();
+  document.getElementById("videosubmit").disabled = true; 
+  document.getElementById("videosubmit").style.opacity = 0.3;
+  // (C) PREVENT HTML FORM SUBMIT
+  return false;
+}
+*/
+
+submitButton.addEventListener("click", function () {
+	var filename = subjectID + "_" + "task1.mp4";
+	var dir = "/pd_assessment/";
+    //var formData = new FormData();
+	var accessToken = "sl.AqKQtfMtTOYOqUyh2HMErO21_9xfnRZbfUV3kk_rrj3Q26TKbRIigWOxSbslEij-SbN1_80mL8JvuP7n2Jgd4cnBEiHjQdGHTF0zmWcucef8cIrEEtrcyJJJGD-qJlwQ0SSOKueo3Ro";
+	var uploadUrl = "https://content.dropboxapi.com/2/files/upload";
+    var xhr = new XMLHttpRequest();
+    //formData.append('name', filename);
+    //formData.append('video', bloby);
+    
+    xhr.open('POST', uploadUrl, true);
+	xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
+    //xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+	xhr.setRequestHeader("Content-Type", "application/octet-stream");
+	xhr.setRequestHeader('Dropbox-API-Arg', JSON.stringify({
+		path: dir + filename
+	}));
+    xhr.upload.addEventListener("load", function () {
+        $(".meter").addClass("done");
+    });
+    xhr.upload.addEventListener("progress", function (event) {
+        if (event.lengthComputable) {
+            var complete = (event.loaded / event.total * 100 | 0);
+            $('.meter').css('width', complete + '%');
+			$('.meter').html(complete.toString() + '%');
+        }
+    });
+	//xhr.onload = function(){ document.getElementById("resultResponse").innerHTML = this.response; };
+    
+    xhr.send(bloby);
+	submitButton.disabled = true;
+	submitButton.style.opacity = 0.3;
+	recordButton.disabled = true;
+	recordButton.style.opacity = 0.3;
+    return false;
+});
+
+</script>
+</body>

@@ -1,0 +1,94 @@
+<html>
+<head>
+
+        <meta charset="utf-8">
+
+        <title>Video Recording for PD Assessment</title>
+
+        
+
+        <!-- Include Video.js stylesheet (https://videojs.com/) -->
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.5.5/video-js.min.css" rel="stylesheet">
+
+
+
+        <!-- Style of VideoJS -->
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/videojs-record/3.8.0/css/videojs.record.min.css" rel="stylesheet">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+		<script src="RecordRTC.js"></script>
+		<script src="adapter-latest.js"></script>
+<style>
+video {
+    -moz-transform: scale(-1, 1);
+	-webkit-transform: scale(-1, 1); -o-transform: scale(-1, 1);
+	transform: scale(-1, 1); filter: FlipH;
+	width: 50%;
+	border-adius: 9px;
+	align: center;
+}
+</style>
+</head>
+<body>
+<center>
+<button id="btn-record">Record</button>
+<button id="btn-record1">Stop</button>
+<hr>
+<video id="myVideo" autoplay playsinline controls></video>
+</center>
+<script>
+
+var recorder;
+var yourVideo = document.getElementById('myVideo');
+document.getElementById('btn-record').onclick = function() {
+    this.disabled = true;
+    this.style.background = 'transparent';
+    this.style.color = 'grey';
+
+    var cameraProperties = {
+        video: {
+            width: 1920,
+            height: 1080
+        },
+        audio: true
+    };
+
+    navigator.mediaDevices.getUserMedia(cameraProperties).then(function(cameraStream) {
+            yourVideo.volume = 0;
+            yourVideo.srcObject = cameraStream;
+
+            recorder = RecordRTC(cameraStream, {
+                videoBitsPerSecond: 51200000,
+				//audioBitsPerSecond: 320000,
+                mimeType: 'video/webm'
+            });
+            recorder.startRecording();
+			setTimeout(function() {
+                recorder.stopRecording(function() {
+                    var blob = recorder.getBlob();
+                    alert('Recording size: ' + bytesToSize(blob.size));
+
+                    var videoURL = URL.createObjectURL(blob);
+                    yourVideo.srcObject = null;
+                    yourVideo.volume = 1;
+                    yourVideo.src = videoURL;
+                });
+            }, 10000);
+	});
+}
+document.getElementById('btn-record1').onclick = function() {
+                recorder.stopRecording(function() {
+                    var blob = recorder.getBlob();
+                    alert('Recording size: ' + bytesToSize(blob.size));
+
+                    var videoURL = URL.createObjectURL(blob);
+                    yourVideo.srcObject = null;
+                    yourVideo.volume = 1;
+                    yourVideo.src = videoURL;
+                });
+            }
+</script>
+</body>
